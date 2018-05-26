@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="App.Xaml.Mvx.cs" />
+    <Compile Include="Converters\MultiDimensionalCoverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

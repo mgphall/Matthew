@@ -5,6 +5,9 @@ namespace PrimeTables.Core.ViewModels
 {
     using MvvmCross.Core.ViewModels;
     using PrimeTables.Core.ExtensionMethods;
+    using System.Data;
+    using System.Linq;
+    using System.Windows;
 
     public class PrimeTablesViewModel
         : MvxViewModel
@@ -14,7 +17,8 @@ namespace PrimeTables.Core.ViewModels
 
         private MvxCommand _startPrimeCalulation;
         private IPrimeTablesModel _primeTablesModel;
-
+        private int[] _primeNumbers;
+        private int[,] _primeTable;
         public IMvxCommand StartPrimeCalulation => _startPrimeCalulation;
 
         public PrimeTablesViewModel(IPrimeTablesModel primeTablesModel)
@@ -32,13 +36,24 @@ namespace PrimeTables.Core.ViewModels
             set { SetProperty(ref primeCount, value); }
         }
 
-        public int[] PrimeNumbers { get; private set; }
+        public int[] PrimeNumbers {
+            get { return _primeNumbers; }
+             set { SetProperty(ref _primeNumbers, value); }
+}
+
+        public int[,] PrimeTable
+        {
+            get { return _primeTable; }
+            set { SetProperty(ref _primeTable, value); }
+        }
 
         private void StartCalulation()
         {
            var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
 
            PrimeNumbers = result.FindAllIndexof(true);
+
+           PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
         }
     }
 }

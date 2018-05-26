@@ -8,7 +8,7 @@ namespace PrimeTables.Test
     public class PrimeTablesViewModelTests
     {
         [TestMethod]
-        public void PrimeCount_ReturnsFirstTwoPrimes()
+        public void PrimeCount_Returns10Primes()
         {
             var count = 10;
             var expectedResult = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };

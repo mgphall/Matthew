@@ -9,5 +9,7 @@ namespace PrimeTables.Core
     public interface IPrimeTablesModel
     {
         bool[] MakeSieve(int max, int count);
+
+        int[,] ReturnTable(int[] primes);
     }
 }

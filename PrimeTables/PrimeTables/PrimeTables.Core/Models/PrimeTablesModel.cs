@@ -59,5 +59,40 @@ namespace PrimeTables.Core.Model
 
             return is_prime;
         }
+
+
+        public int[,] ReturnTable(int[] primes)
+        {
+            var count = primes.Length;
+            int[,] table = new int[count+1, count+1]; ;
+            int start = 0;
+            // returns 2d  list, example how it looks can be seen in test
+
+            //headers
+            for (int i = 0; i < primes.Length; i++)
+            {
+              table[0, i+1] = primes[i];
+                table[i + 1, 0] = primes[i];
+            }
+
+
+            for (int p = 0; p < primes.Length; p++)
+            {
+                for (int j = 0; j < primes.Length; j++)
+                {
+                    if (table[p+1, j+1] == 0)
+                    {
+                        table[p+1, j+1] = (primes[p] * primes[j]);
+                    }
+
+                    if (table[j+1, p+1] == 0)
+                    {
+                        table[j+1, p+1] = table[p, j];
+                    }
+                }
+            }
+
+            return table;
+        }
     }
 }
