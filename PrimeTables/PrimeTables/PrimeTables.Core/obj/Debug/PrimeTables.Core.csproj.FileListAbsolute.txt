@@ -1,0 +1,13 @@
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\PrimeTables.Core.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\PrimeTables.Core.pdb
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Binding.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Core.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Localization.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Platform.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Binding.pdb
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Core.pdb
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Localization.pdb
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\bin\Debug\MvvmCross.Platform.pdb
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\obj\Debug\PrimeTables.Core.dll
+c:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\obj\Debug\PrimeTables.Core.pdb
+C:\Projects\PrimeTables\PrimeTables\PrimeTables.Core\obj\Debug\PrimeTables.Core.csprojResolveAssemblyReference.cache
