@@ -8,5 +8,6 @@ namespace PrimeTables.Core
 {
     public interface IPrimeTablesModel
     {
+        bool[] MakeSieve(int max, int count);
     }
 }

@@ -4,11 +4,12 @@
 namespace PrimeTables.Core.ViewModels
 {
     using MvvmCross.Core.ViewModels;
-    using PrimeTables.Core.Model;
+    using PrimeTables.Core.ExtensionMethods;
 
     public class PrimeTablesViewModel
         : MvxViewModel
     {
+
         private int primeCount = 1;
 
         private MvxCommand _startPrimeCalulation;
@@ -23,15 +24,21 @@ namespace PrimeTables.Core.ViewModels
             _startPrimeCalulation = new MvxCommand(() => StartCalulation());
         }
 
+        public int Extimate { get; set; } = 1000000;
+
         public int PrimeCount
         {
             get { return primeCount; }
             set { SetProperty(ref primeCount, value); }
         }
 
+        public int[] PrimeNumbers { get; private set; }
+
         private void StartCalulation()
         {
-          //// start Prime Calulations here
+           var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
+
+           PrimeNumbers = result.FindAllIndexof(true);
         }
     }
 }
