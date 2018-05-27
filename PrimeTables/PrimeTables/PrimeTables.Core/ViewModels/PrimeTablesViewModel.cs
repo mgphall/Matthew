@@ -5,9 +5,7 @@ namespace PrimeTables.Core.ViewModels
 {
     using MvvmCross.Core.ViewModels;
     using PrimeTables.Core.ExtensionMethods;
-    using System.Data;
-    using System.Linq;
-    using System.Windows;
+    using System.Threading.Tasks;
 
     public class PrimeTablesViewModel
         : MvxViewModel
@@ -19,13 +17,18 @@ namespace PrimeTables.Core.ViewModels
         private IPrimeTablesModel _primeTablesModel;
         private int[] _primeNumbers;
         private int[,] _primeTable;
+        private bool isEnabled = true;
+
         public IMvxCommand StartPrimeCalulation => _startPrimeCalulation;
 
         public PrimeTablesViewModel(IPrimeTablesModel primeTablesModel)
         {
             _primeTablesModel = primeTablesModel;
 
-            _startPrimeCalulation = new MvxCommand(() => StartCalulation());
+            _startPrimeCalulation = new MvxCommand( () => 
+            {
+                StartCalulationAsync();
+            });
         }
 
         public int Extimate { get; set; } = 1000000;
@@ -34,6 +37,11 @@ namespace PrimeTables.Core.ViewModels
         {
             get { return primeCount; }
             set { SetProperty(ref primeCount, value); }
+        }
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { SetProperty(ref isEnabled, value); }
         }
 
         public int[] PrimeNumbers {
@@ -47,13 +55,23 @@ namespace PrimeTables.Core.ViewModels
             set { SetProperty(ref _primeTable, value); }
         }
 
-        private void StartCalulation()
+        private async void StartCalulationAsync()
         {
-           var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
+            int[,] table;
 
-           PrimeNumbers = result.FindAllIndexof(true);
+            PrimeTable = null;
 
-           PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
+            IsEnabled = false;
+
+            await Task.Factory.StartNew(() =>
+            {
+                var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
+
+                PrimeNumbers = result.FindAllIndexof(true);
+                PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
+            });
+
+            IsEnabled = true;
         }
     }
 }
