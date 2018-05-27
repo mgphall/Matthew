@@ -57,19 +57,19 @@ namespace PrimeTables.Core.ViewModels
 
         private async void StartCalulationAsync()
         {
-            int[,] table;
-
             PrimeTable = null;
 
             IsEnabled = false;
 
-            await Task.Factory.StartNew(() =>
+          var table =  await Task.Factory.StartNew(() =>
             {
                 var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
 
                 PrimeNumbers = result.FindAllIndexof(true);
-                PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
+                return _primeTablesModel.ReturnTable(PrimeNumbers);
             });
+
+            PrimeTable = table;
 
             IsEnabled = true;
         }

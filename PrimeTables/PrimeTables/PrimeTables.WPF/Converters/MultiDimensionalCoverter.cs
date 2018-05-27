@@ -14,31 +14,30 @@ namespace PrimeTables.Core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var array = value as int[,];
-            if (array == null) return null;
+                var array = value as int[,];
+                if (array == null) return null;
 
-            var rows = array.GetLength(0);
-            var columns = array.GetLength(1);
+                var rows = array.GetLength(0);
+                var columns = array.GetLength(1);
 
-            var t = new DataTable();
-            for (var c = 0; c < columns; c++)
-            {
-                t.Columns.Add(new DataColumn(c.ToString()));
-            }
-
-            for (var r = 0; r < rows; r++)
-            {
-                var newRow = t.NewRow();
+                var t = new DataTable();
                 for (var c = 0; c < columns; c++)
                 {
-                    var v = array[r, c];
-                    newRow[c] = v;
+                    t.Columns.Add(new DataColumn(c.ToString()));
                 }
 
-                t.Rows.Add(newRow);
-            }
+                for (var r = 0; r < rows; r++)
+                {
+                    var newRow = t.NewRow();
+                    for (var c = 0; c < columns; c++)
+                    {
+                        var v = array[r, c];
+                        newRow[c] = v;
+                    }
 
-
+                    t.Rows.Add(newRow);
+                }
+            
             return t.DefaultView;
         }
 

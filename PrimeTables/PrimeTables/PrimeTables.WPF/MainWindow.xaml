@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:PrimeTables.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Icon="MvvmCross.ico">
-    <Grid>
+    <StackPanel HorizontalAlignment="Left">
 
-    </Grid>
+    </StackPanel>
 </Controls:MetroWindow>

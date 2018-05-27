@@ -7,15 +7,16 @@
              xmlns:views="clr-namespace:MvvmCross.Wpf.Views;assembly=MvvmCross.Wpf"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converters="clr-namespace:PrimeTables.Core.Converters"
-             mc:Ignorable="d" MaxWidth="780" MaxHeight="1000">
-    <StackPanel  HorizontalAlignment="Left">
+             mc:Ignorable="d" >
+    <StackPanel  HorizontalAlignment="Left" >
+        
         <StackPanel.Resources>
             <converters:MultiDimensionalCoverter x:Key="MultiDimensionalCoverter"/>
         </StackPanel.Resources>
         <StackPanel>
             <Label>Select the amount of prime numbers required</Label>
         </StackPanel>
-        <StackPanel Height="40" Orientation="Horizontal" VerticalAlignment="Top">
+        <StackPanel Height="40" Orientation="Horizontal"  HorizontalAlignment="Left"  VerticalAlignment="Top">
             <Controls:NumericUpDown Width="200" Value="{Binding PrimeCount}" Minimum = "0" Maximum = "10000"  />
             <Button Content="Start" Width="100" Style="{StaticResource AccentedSquareButtonStyle}" IsEnabled="{Binding IsEnabled}" Command="{Binding StartPrimeCalulation}"/>
         </StackPanel>
