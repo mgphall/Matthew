@@ -1,4 +1,4 @@
-﻿<views:MvxWpfView 
+﻿<views:MvxWpfView x:Name="mvxWpfView" 
              x:Class="PrimeTables.WPF.Views.PrimeTablesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,8 +8,8 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converters="clr-namespace:PrimeTables.Core.Converters"
              mc:Ignorable="d" >
-    <StackPanel  HorizontalAlignment="Left" >
-        
+    <StackPanel x:Name="stackPanel"  HorizontalAlignment="Left" >
+
         <StackPanel.Resources>
             <converters:MultiDimensionalCoverter x:Key="MultiDimensionalCoverter"/>
         </StackPanel.Resources>
@@ -21,8 +21,8 @@
             <Button Content="Start" Width="100" Style="{StaticResource AccentedSquareButtonStyle}" IsEnabled="{Binding IsEnabled}" Command="{Binding StartPrimeCalulation}"/>
         </StackPanel>
         <Grid>
-            <DataGrid HeadersVisibility="None" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding PrimeTable, Converter={StaticResource MultiDimensionalCoverter}}" MaxHeight="750" MaxWidth="750"  HorizontalAlignment="Left"/>
+            <DataGrid HeadersVisibility="None" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding PrimeTable, Converter={StaticResource MultiDimensionalCoverter}}" MaxHeight="750" Width="{Binding ActualWidth, ElementName=mvxWpfView, Mode=OneWay}"  HorizontalAlignment="Left"/>
         </Grid>
-       
+
     </StackPanel>
 </views:MvxWpfView>

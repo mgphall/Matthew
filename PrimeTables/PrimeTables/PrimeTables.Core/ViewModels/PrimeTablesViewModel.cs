@@ -5,6 +5,7 @@ namespace PrimeTables.Core.ViewModels
 {
     using MvvmCross.Core.ViewModels;
     using PrimeTables.Core.ExtensionMethods;
+    using System.Diagnostics;
     using System.Threading.Tasks;
 
     public class PrimeTablesViewModel
@@ -57,16 +58,23 @@ namespace PrimeTables.Core.ViewModels
 
         private void StartCalulationAsync()
         {
+            Stopwatch startPrime = new Stopwatch();
+            startPrime.Start();
+
             PrimeTable = null;
 
             IsEnabled = false;
 
             var result = _primeTablesModel.MakeSieve(Estimate, PrimeCount);
 
+            Debug.WriteLine($"Primes found in {startPrime.Elapsed}");
+
             PrimeNumbers = result.FindAllIndexof(true);
             PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
 
             IsEnabled = true;
+
+            startPrime.Stop();
         }
     }
 }
