@@ -4,12 +4,10 @@
 
 namespace PrimeTables.Core.Model
 {
-    using System;
     using System.Linq;
 
     public class PrimeTablesModel : IPrimeTablesModel
     {
-
         // Build a Sieve of Eratosthenes.
         public bool[] MakeSieve(int max, int count)
         {
@@ -85,7 +83,7 @@ namespace PrimeTables.Core.Model
 
                     if (table[j+ offset, p+ offset] == 0)
                     {
-                        table[j+ offset, p+ offset] = table[p, j];
+                        table[j+ offset, p+ offset] = table[p + offset, j + offset];
                     }
                 }
             }

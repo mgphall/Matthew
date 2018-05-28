@@ -31,7 +31,7 @@ namespace PrimeTables.Core.ViewModels
             });
         }
 
-        public int Extimate { get; set; } = 1000000;
+        public int Estimate { get; set; } = 1000000;
 
         public int PrimeCount
         {
@@ -55,21 +55,16 @@ namespace PrimeTables.Core.ViewModels
             set { SetProperty(ref _primeTable, value); }
         }
 
-        private async void StartCalulationAsync()
+        private void StartCalulationAsync()
         {
             PrimeTable = null;
 
             IsEnabled = false;
 
-          var table =  await Task.Factory.StartNew(() =>
-            {
-                var result = _primeTablesModel.MakeSieve(Extimate, PrimeCount);
+            var result = _primeTablesModel.MakeSieve(Estimate, PrimeCount);
 
-                PrimeNumbers = result.FindAllIndexof(true);
-                return _primeTablesModel.ReturnTable(PrimeNumbers);
-            });
-
-            PrimeTable = table;
+            PrimeNumbers = result.FindAllIndexof(true);
+            PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
 
             IsEnabled = true;
         }

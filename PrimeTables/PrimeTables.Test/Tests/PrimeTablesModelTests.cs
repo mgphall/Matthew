@@ -12,7 +12,6 @@ namespace PrimeTables.Test
         [TestMethod]
         public void PrimeTables_MakeSieve_Returns_10Primes()
         {
-            var count = 10;
             var expectedPrimes = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 
             var model = new PrimeTablesModel();
@@ -25,13 +24,12 @@ namespace PrimeTables.Test
         [TestMethod]
         public void PrimeTables_MakeSieve_Returns_PrimeTable()
         {
-            var count = 10;
             var expectedPrimes = new int[] { 2, 3};
 
             var expectedTables = new int[,] {
             {0,2,3},
             {2,4,6},
-            {3,2,9}, };
+            {3,6,9}, };
 
             var model = new PrimeTablesModel();
 

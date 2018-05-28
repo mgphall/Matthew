@@ -16,7 +16,7 @@ namespace PrimeTables.Test
             var model = new PrimeTablesModel();
             var viewmodel = new PrimeTablesViewModel(model);
 
-            viewmodel.Extimate = 100;
+            viewmodel.Estimate = 100;
             viewmodel.PrimeCount = 10;
 
             viewmodel.StartPrimeCalulation.Execute();
@@ -36,13 +36,13 @@ namespace PrimeTables.Test
             var expectedTables = new int[,] {
             {0,2,3,5},
             {2,4,6,10},
-            {3,2,9,15},
-             {5,3,6,25}};
+            {3,6,9,15},
+            {5,10,15,25}};
 
             var model = new PrimeTablesModel();
             var viewmodel = new PrimeTablesViewModel(model);
 
-            viewmodel.Extimate = 10;
+            viewmodel.Estimate = 10;
             viewmodel.PrimeCount = 3;
 
             viewmodel.StartPrimeCalulation.Execute();
