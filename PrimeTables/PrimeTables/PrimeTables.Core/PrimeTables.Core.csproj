@@ -41,7 +41,7 @@
     <Compile Include="Interfaces\IPrimeTablesModel.cs" />
     <Compile Include="Models\PrimeTablesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\PrimeTablesViewModelValidator.cs" />
+    <Compile Include="Validation\PrimeTablesViewModelValidatorTests.cs" />
     <Compile Include="ViewModels\PrimeTablesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
