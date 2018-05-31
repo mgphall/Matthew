@@ -107,6 +107,7 @@ namespace PrimeTables.Core.ViewModels
                     PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
                 }
             }
+
             Debug.WriteLine($"Primes found in {startPrime.Elapsed}");
             startPrime.Stop();
 
