@@ -1,9 +1,9 @@
 ﻿///-----------------------------------------------------------------
 ///   Description: Prime Tables Model
 ///-----------------------------------------------------------------
-
 namespace PrimeTables.Core.Model
 {
+    using PrimeTables.Core.Constants;
     using System.Linq;
 
     public class PrimeTablesModel : IPrimeTablesModel
@@ -11,6 +11,10 @@ namespace PrimeTables.Core.Model
         // Build a Sieve of Eratosthenes.
         public bool[] MakeSieve(int max, int count)
         {
+            if (count < PrimeConstants.MinPrimes || count > PrimeConstants.MaxPrimes) { return null; }
+
+            if (max < 0 || max > PrimeConstants.StartEstimate) { return null;  }
+
             int altCount = 0;
             int decremte = 2;
             int tCount = 0;
@@ -61,6 +65,11 @@ namespace PrimeTables.Core.Model
 
         public int[,] ReturnTable(int[] primes)
         {
+            if (primes.Count() <= 0)
+            {
+                return null;
+            }
+
             var offset = 1;
             var count = primes.Length;
             int[,] table = new int[count+1, count+1]; ;
