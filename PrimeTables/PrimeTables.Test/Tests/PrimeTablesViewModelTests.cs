@@ -65,7 +65,7 @@ namespace PrimeTables.Test
 
             Assert.IsNull(viewmodel.PrimeNumbers);
             Assert.IsNull(viewmodel.PrimeTable);
-            Assert.AreSame(viewmodel.DisplayError, "please enter a positive number");
+            Assert.AreSame(viewmodel.DisplayError, "please enter a vaild number");
         }
 
         [TestMethod]

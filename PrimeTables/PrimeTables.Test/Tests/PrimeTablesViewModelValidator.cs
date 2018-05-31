@@ -14,6 +14,15 @@ namespace PrimeTables.Test.Tests
         private PrimeTablesViewModelValidator validator;
 
         [TestMethod]
+        public void Validator_Should_not_have_error_PrimeTablesViewModel()
+        {
+            var PrimeTableVM = setup();
+
+            validator = new PrimeTablesViewModelValidator();
+            validator.ShouldHaveValidationErrorFor(p => p.PrimeCount, PrimeTableVM as PrimeTablesViewModel);
+        }
+
+        [TestMethod]
         public void Validator_Should_have_error_when_PrimeCount_is_zero()
         {
             var PrimeTableVM =  setup();
