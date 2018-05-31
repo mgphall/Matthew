@@ -4,9 +4,10 @@
 namespace PrimeTables.Core.ViewModels
 {
     using MvvmCross.Core.ViewModels;
+    using PrimeTables.Core.Constants;
     using PrimeTables.Core.ExtensionMethods;
     using System.Diagnostics;
-    using System.Threading.Tasks;
+    using System.Linq;
 
     public class PrimeTablesViewModel
         : MvxViewModel
@@ -19,6 +20,7 @@ namespace PrimeTables.Core.ViewModels
         private int[] _primeNumbers;
         private int[,] _primeTable;
         private bool isEnabled = true;
+        private string _displayError = string.Empty;
 
         public IMvxCommand StartPrimeCalulation => _startPrimeCalulation;
 
@@ -28,17 +30,26 @@ namespace PrimeTables.Core.ViewModels
 
             _startPrimeCalulation = new MvxCommand( () => 
             {
-                StartCalulationAsync();
+                StartCalulation();
             });
         }
 
-        public int Estimate { get; set; } = 1000000;
+        public int Min { get; set; } = PrimeConstants.MinPrimes;
+        public int Max { get; set; } = PrimeConstants.MaxPrimes;
+        public int Estimate { get; set; } = PrimeConstants.StartEstimate;
 
         public int PrimeCount
         {
             get { return primeCount; }
             set { SetProperty(ref primeCount, value); }
         }
+
+        public string DisplayError
+        {
+            get { return _displayError; }
+            set { SetProperty(ref _displayError, value); }
+        }
+
         public bool IsEnabled
         {
             get { return isEnabled; }
@@ -56,25 +67,50 @@ namespace PrimeTables.Core.ViewModels
             set { SetProperty(ref _primeTable, value); }
         }
 
-        private void StartCalulationAsync()
+        private void StartCalulation()
+        {
+            DisplayError = string.Empty;
+
+            var validator = new Validation.PrimeTablesViewModelValidator();
+
+            var results = validator.Validate(this);
+
+            IsEnabled = false;
+
+            if (results.IsValid)
+            {
+                PerformPrimeCalulation();
+            }
+            else
+            {
+                DisplayError = results.Errors.FirstOrDefault().ErrorMessage;
+            }
+
+            IsEnabled = true;
+        }
+
+        private void PerformPrimeCalulation()
         {
             Stopwatch startPrime = new Stopwatch();
             startPrime.Start();
 
             PrimeTable = null;
 
-            IsEnabled = false;
-
             var result = _primeTablesModel.MakeSieve(Estimate, PrimeCount);
 
+            if (result != null)
+            {
+                PrimeNumbers = result.FindAllIndexof(true);
+
+                if (PrimeNumbers.Length > 0)
+                {
+                    PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
+                }
+            }
             Debug.WriteLine($"Primes found in {startPrime.Elapsed}");
-
-            PrimeNumbers = result.FindAllIndexof(true);
-            PrimeTable = _primeTablesModel.ReturnTable(PrimeNumbers);
-
-            IsEnabled = true;
-
             startPrime.Stop();
+
+            
         }
     }
 }

@@ -17,8 +17,10 @@
             <Label>Select the amount of prime numbers required</Label>
         </StackPanel>
         <StackPanel Height="40" Orientation="Horizontal"  HorizontalAlignment="Left"  VerticalAlignment="Top">
-            <Controls:NumericUpDown Width="200" Value="{Binding PrimeCount}" Minimum = "0" Maximum = "10000"  />
+            <Controls:NumericUpDown Width="200" Value="{Binding PrimeCount}" Minimum="{Binding Min}" Maximum = "{Binding Max}"  />
+
             <Button Content="Start" Width="100" Style="{StaticResource AccentedSquareButtonStyle}" IsEnabled="{Binding IsEnabled}" Command="{Binding StartPrimeCalulation}"/>
+            <TextBlock Margin="10" Text="{Binding DisplayError}" Foreground="Red"/>
         </StackPanel>
         <Grid>
             <DataGrid HeadersVisibility="None" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding PrimeTable, Converter={StaticResource MultiDimensionalCoverter}}" MaxHeight="750" Width="{Binding ActualWidth, ElementName=mvxWpfView, Mode=OneWay}"  HorizontalAlignment="Left"/>
